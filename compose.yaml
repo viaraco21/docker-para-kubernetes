@@ -29,8 +29,8 @@ services:
     networks:
       - fake_net
     depends_on:
-      db:
-        condition: service_healthy
+      - db
+      
 networks:
   fake_net:
     driver: bridge
