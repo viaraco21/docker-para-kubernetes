@@ -13,6 +13,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   web:
+    image: fabriciosveronez/live-fake-shop:v1
     build:
       context: ./src
       dockerfile: Dockerfile
