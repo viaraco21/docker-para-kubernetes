@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:13.16
+    environment:
+      POSTGRES_USER: ecommerce
+      POSTGRES_PASSWORD: Pg1234
+      POSTGRES_DB: ecommerce
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: db
+      DB_USER: ecommerce
+      DB_PASSWORD: Pg1234
+      DB_NAME: ecommerce
+      DB_PORT: 5432
+      FLASK_APP: index.py
+      PROMETHEUS_MULTIPROC_DIR: /tmp/metrics
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
