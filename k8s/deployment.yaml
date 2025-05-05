@@ -34,6 +34,8 @@ spec:
               value: ecommerce
             - name: POSTGRES_DB
               value: ecommerce
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
           volumeMounts: 
             - name: postgre-storage
               mountPath: /var/lib/postgresql/data
